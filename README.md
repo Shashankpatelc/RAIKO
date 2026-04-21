@@ -63,7 +63,8 @@ python raiko.py
 
 - [x] Base architecture
 - [x] AI conversation
-- [ ] Personality & memory
+- [x] Memory
+- [ ] Personality
 - [ ] Custom commands
 - [ ] Voice input & output
 - [ ] Desktop UI
