@@ -28,6 +28,7 @@ RAIKO/
 ├── .gitignore        — protects secrets
 └── modules/
     ├── chat.py       — AI brain, processes and responds
+    ├── memory.json   — Store the previous session
     ├── model_input.py  — handles user input
     └── model_output.py — handles response output
 ```
