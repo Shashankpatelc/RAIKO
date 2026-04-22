@@ -6,6 +6,7 @@ client = genai.Client(api_key=config.API_KEY)
 
 cond = True
 
+chat.load_memory()
 # Main loop for the coversation
 while cond:
     cond = chat.main()
