@@ -1,20 +1,18 @@
-# RAIKO
-My personal AI assistant. 
-
 # ⚡ RAIKO - AI Assistant
 
 > *"Built by Rabbie. Powered by AI. Inspired by Iron Man."*
 
-RAIKO is a personal AI assistant built with Python and Google Gemini API. Designed with a clean modular architecture, RAIKO is not just a chatbot — it's the beginning of something much bigger.
+RAIKO is a personal AI assistant built with Python and Ollama. Designed with a clean modular architecture, RAIKO is not just a chatbot — it's the beginning of something much bigger.
 
 ---
 
 ## 🚀 Features
 
-- 💬 Natural AI conversation powered by Google Gemini
-- 🔒 Secure API key management with .env
+- 💬 Natural AI conversation powered by Ollama (local LLM)
+- 🔒 Secure configuration management
 - 🧩 Clean modular architecture — easy to expand
 - ⚡ Fast and lightweight
+- 📴 Fully offline — no API keys, no quotas, no internet needed
 
 ---
 
@@ -22,15 +20,14 @@ RAIKO is a personal AI assistant built with Python and Google Gemini API. Design
 
 ```
 RAIKO/
-├── raiko.py          — entry point, runs everything
-├── config.py         — API keys and settings
-├── .env              — secret keys (never pushed to GitHub)
-├── .gitignore        — protects secrets
+├── raiko.py            — entry point, runs everything
+├── config.py           — model settings
+├── .gitignore          — protects secrets
 └── modules/
-    ├── chat.py       — AI brain, processes and responds
-    ├── memory.json   — Store the previous session
+    ├── chat.py         — AI brain, processes and responds
     ├── model_input.py  — handles user input
-    └── model_output.py — handles response output
+    ├── model_output.py — handles response output
+    └── memory.json     — stores conversation summary
 ```
 
 ---
@@ -43,14 +40,16 @@ git clone https://github.com/Shashankpatelc/RAIKO.git
 cd RAIKO
 ```
 
-**2. Install dependencies**
+**2. Install Ollama**
+
+Download and install from https://ollama.com then pull a model:
 ```bash
-pip install google-genai python-dotenv
+ollama pull llama3.2:1b
 ```
 
-**3. Create your .env file**
-```
-GEMINI_API_KEY=your-gemini-api-key-here
+**3. Install dependencies**
+```bash
+pip install ollama
 ```
 
 **4. Run RAIKO**
@@ -65,11 +64,11 @@ python raiko.py
 - [x] Base architecture
 - [x] AI conversation
 - [x] Memory
-- [ ] Personality
+- [x] Offline mode with local LLM
 - [ ] Custom commands
+- [ ] Personality
 - [ ] Voice input & output
 - [ ] Desktop UI
-- [ ] Offline mode with local LLM
 
 ---
 
