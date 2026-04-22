@@ -34,7 +34,7 @@ def main():
     # Exit the model
     if user_input.lower() == "bye":
         summary = {
-             "summary" :  chat_session.send_message("Summarize the whole chat so you can remember that when i pass that.")
+             "summary" :  chat_session.send_message("Summarize the whole chat so you can remember that when i pass that in a new chat.").text
             }
         with open('memory.json', 'w') as file:
             json.dump(summary, file)
