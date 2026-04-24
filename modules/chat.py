@@ -1,6 +1,7 @@
 from google import genai
 from modules import model_input
 from modules import model_output
+from modules import commands
 
 import config 
 import json
@@ -39,10 +40,12 @@ def main():
         with open('memory.json', 'w') as file:
             json.dump(summary, file)
         return False
+    elif commands.check(user_input):
+        print("Commmand found..............")
+    else:
+        # Get the response from model
+        replay = get_respond(user_input)
 
-    # Get the response from model
-    replay = get_respond(user_input)
-
-    # Show the Output
-    model_output.put(replay)
+        # Show the Output
+        model_output.put(replay)
     return True
