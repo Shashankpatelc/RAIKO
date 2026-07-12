@@ -1,19 +1,18 @@
 import ollama
-import config
+# import config
 
 def check(user_input):
     print("cmd is here")
     formated_input = user_input.split()
     print(formated_input)
     if formated_input[1] == "command" or formated_input[1] == "cmd":
-        handle(user_input)
+        handle(' '.join(formated_input[2:]))
         return True
     else:
         return False
     
-cmd = ""
 def handle(user_input):
-    cmd = user_input[user_input.index("cmd")+1:]
+    cmd = user_input
     prompt = [
         {
             "role" : "system",
@@ -31,8 +30,16 @@ def handle(user_input):
     ]
 
     cmd_to_exe : ollama.ChatResponse = ollama.chat(
-        model=config.Model,
+        # model=config.Model,
+        model="qwen2.5-coder:1.5b",
         messages=prompt
     )
 
-    print(cmd_to_exe)
+    raw_output = cmd_to_exe.message.content
+    print("-----------------raw-----------")
+    print(raw_output)
+    exe_cmd = raw_output.replace("```python","").replace("```","")
+    print("--------------------exact---------------")
+    print(exe_cmd)
+
+check("raiko cmd open chrome ")
