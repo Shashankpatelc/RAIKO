@@ -2,11 +2,11 @@ import ollama
 # import config
 
 def check(user_input):
-    print("cmd is here")
-    formated_input = user_input.split()
+    print("cmd is here")    
+    formated_input = user_input.split() # Split the input as a list
     print(formated_input)
-    if formated_input[1] == "command" or formated_input[1] == "cmd":
-        handle(' '.join(formated_input[2:]))
+    if formated_input[1] == "command" or formated_input[1] == "cmd":    # check if it is a command or not
+        handle(' '.join(formated_input[2:]))        # passing the main command to the model
         return True
     else:
         return False
@@ -24,6 +24,8 @@ def handle(user_input):
             "3. Do NOT include any explanations, introduction, greetings, or conversational filler. " \
             "4. Assume the script runs on Windows. For example, use 'cls' instead of 'clear', and use proper Windows paths or commands. " \
             "5. If the request cannot be turned into a script, output only the phrase: print(\"Command not recognized\") " \
+            "6. Never use print() statements to simulate a command. You must write the actual execution logic."
+            "7. To launch applications, ALWAYS use os.system('start <app_name>'). Do not use os.startfile()."
             f"Input Request: {cmd} " \
             "Output:"
         }
@@ -35,11 +37,17 @@ def handle(user_input):
         messages=prompt
     )
 
-    raw_output = cmd_to_exe.message.content
-    print("-----------------raw-----------")
-    print(raw_output)
-    exe_cmd = raw_output.replace("```python","").replace("```","")
-    print("--------------------exact---------------")
+    raw_output = cmd_to_exe.message.content         # Model output code
+    exe_cmd = raw_output.replace("```python","").replace("```","")      # Filtered code
     print(exe_cmd)
 
-check("raiko cmd open chrome ")
+    # Try catch to execute the command and any error try not to break the whole code
+    try:
+        print("Command is try to execute")
+        exec(exe_cmd)       # Execute the Code
+    except Exception as e:
+        print("Failed to Execute the command")
+        print(f"Error is : {e}")
+    
+
+check("raiko cmd write i am raiko to tril.txt file ")
